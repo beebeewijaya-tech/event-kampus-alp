@@ -220,19 +220,41 @@
 
 ---
 
-## Task Assignment Summary
+## Task Assignment Summary (By UI Page)
 
-| Task | Who | Difficulty |
-|------|-----|------------|
-| 1 — Schema migrations | Claude | 🔴 Hard |
-| 2 — Models | Teammate A | 🟡 Medium |
-| 3 — Auth | Teammate A | 🟡 Medium |
-| 4 — Layouts & Middleware | Teammate B | 🟡 Medium |
-| 5 — Public pages | Teammate B | 🟡 Medium |
-| 6 — Registration + Waiting List | Claude | 🔴 Hard |
-| 7 — Profile & Notifications | Teammate A | 🟡 Medium |
-| 8 — Admin Event CRUD | Claude | 🔴 Hard |
-| 9 — Admin Participants + Dashboard | Claude | 🔴 Hard |
-| 10 — Admin Reports | Teammate B | 🟡 Medium |
+### Bee — 4 pages (hardest logic)
+| Task | Page |
+|------|------|
+| 1 | Schema migrations (phone + waiting_list) |
+| 6 | Pendaftaran Event (category selector, quota check, waiting list) |
+| 9 | Daftar Peserta (confirmed + waiting list tabs, remove participant) |
+| 9 | Check-in Peserta |
 
-**Suggested order:** 1 → 2 → 3+4 (parallel) → 5 → 6 → 7+8 (parallel) → 9 → 10
+### Suradi — 4 pages
+| Task | Page |
+|------|------|
+| 2 | Models & relationships (foundation for everyone else) |
+| 8 | Dashboard Admin |
+| 8 | Kelola Event |
+| 8 | Form Tambah/Edit Event (with dynamic category rows) |
+
+### Andina — 4 pages
+| Task | Page |
+|------|------|
+| 3 | Login |
+| 3 | Register |
+| 7 | Profile User |
+| 7 | Notifikasi |
+
+### Jonathan — 4 pages
+| Task | Page |
+|------|------|
+| 4 | Layouts + EnsureAdmin middleware (shared by everyone) |
+| 5 | Home |
+| 5 | Daftar Event |
+| 5 | Detail Event |
+| 10 | Laporan / Statistik |
+
+> Jonathan has 5 pages but all are read-only/display — no complex write logic.
+
+**Suggested order:** 1 → 2 → (3 + 4 parallel) → 5 → 6 → (7 + 8 parallel) → 9 → 10
