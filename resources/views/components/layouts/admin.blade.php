@@ -18,6 +18,11 @@
                 <a href="/admin" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600">Dashboard</a>
                 <a href="/admin/events" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600">Kelola Event</a>
                 <a href="/admin/reports" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600">Laporan</a>
+
+                <form method="POST" action="/logout" class="mt-4">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-4 py-2 rounded-lg text-red-600 hover:bg-red-50">Logout</button>
+                </form>
             </nav>
         </aside>
 
