@@ -222,39 +222,36 @@
 
 ## Task Assignment Summary (By UI Page)
 
-### Bee — 4 pages (hardest logic)
-| Task | Page |
-|------|------|
-| 1 | Schema migrations (phone + waiting_list) |
-| 6 | Pendaftaran Event (category selector, quota check, waiting list) |
-| 9 | Daftar Peserta (confirmed + waiting list tabs, remove participant) |
-| 9 | Check-in Peserta |
+### Bee — 6 pages
+| Page |
+|------|
+| Pendaftaran Event (category selector, quota check, waiting list) |
+| Daftar Peserta (confirmed + waiting list tabs, remove participant) |
+| Check-in Peserta |
+| Notifikasi |
+| Daftar Event |
+| Detail Event |
 
-### Suradi — 4 pages
-| Task | Page |
-|------|------|
-| 2 | Models & relationships (foundation for everyone else) |
-| 8 | Dashboard Admin |
-| 8 | Kelola Event |
-| 8 | Form Tambah/Edit Event (with dynamic category rows) |
+### Suradi — 3 pages
+| Page |
+|------|
+| Dashboard Admin |
+| Kelola Event |
+| Form Tambah/Edit Event (with dynamic category rows) |
 
-### Andina — 4 pages
-| Task | Page |
-|------|------|
-| 3 | Login |
-| 3 | Register |
-| 7 | Profile User |
-| 7 | Notifikasi |
+### Andina — 3 pages
+| Page |
+|------|
+| Login |
+| Register |
+| Profile User |
+| Riwayat Pendaftaran |
 
-### Jonathan — 4 pages
-| Task | Page |
-|------|------|
-| 4 | Layouts + EnsureAdmin middleware (shared by everyone) |
-| 5 | Home |
-| 5 | Daftar Event |
-| 5 | Detail Event |
-| 10 | Laporan / Statistik |
+### Jonathan — 3 pages
+| Page |
+|------|
+| Layouts + EnsureAdmin middleware (shared by everyone — do this first) |
+| Home |
+| Laporan / Statistik |
 
-> Jonathan has 5 pages but all are read-only/display — no complex write logic.
-
-**Suggested order:** 1 → 2 → (3 + 4 parallel) → 5 → 6 → (7 + 8 parallel) → 9 → 10
+**Suggested order:** (3 + 4 parallel) → 5 → 6 → (7 + 8 parallel) → 9 → 10
