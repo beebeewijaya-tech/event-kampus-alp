@@ -29,6 +29,17 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
+    Route::get('events/{event}/categories', [\App\Http\Controllers\Admin\EventCategoryController::class, 'index'])
+        ->name('events.categories.index');
+
+    Route::post('events/{event}/categories', [\App\Http\Controllers\Admin\EventCategoryController::class, 'store'])
+        ->name('events.categories.store');
+
+    Route::put('events/{event}/categories/{category}', [\App\Http\Controllers\Admin\EventCategoryController::class, 'update'])
+        ->name('events.categories.update');
+
+    Route::delete('events/{event}/categories/{category}', [\App\Http\Controllers\Admin\EventCategoryController::class, 'destroy'])
+        ->name('events.categories.destroy');
     Route::get('events/{event}/participants', [\App\Http\Controllers\Admin\ParticipantController::class, 'index'])->name('events.participants');
     Route::post('events/{event}/participants/{registration}/checkin', [\App\Http\Controllers\Admin\ParticipantController::class, 'checkin'])->name('events.checkin');
     Route::delete('events/{event}/participants/{registration}', [\App\Http\Controllers\Admin\ParticipantController::class, 'destroy'])->name('events.participants.destroy');

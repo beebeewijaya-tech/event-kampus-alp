@@ -86,4 +86,59 @@
             </div>
         </form>
     </div>
+   <div class="mt-8 bg-white rounded-xl shadow p-6">
+    <div class="flex items-center justify-between mb-5">
+        <div>
+            <h2 class="text-xl font-semibold text-gray-800">Kategori Event</h2>
+            <p class="text-sm text-gray-500">
+                Kelola kategori, kuota, dan harga untuk event ini.
+            </p>
+        </div>
+    </div>
+
+    @if($event->categories->isEmpty())
+        <div class="rounded-lg border border-dashed border-gray-300 p-6 text-center text-gray-500">
+            Belum ada kategori untuk event ini.
+        </div>
+    @else
+        <div class="overflow-x-auto mb-6">
+            <table class="w-full text-sm">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="text-left px-4 py-3">Nama</th>
+                        <th class="text-left px-4 py-3">Kuota</th>
+                        <th class="text-left px-4 py-3">Harga</th>
+                        <th class="text-left px-4 py-3">Peserta</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach($event->categories as $category)
+                        <tr class="border-t">
+                            <td class="px-4 py-3 font-medium">
+                                {{ $category->name }}
+                            </td>
+
+                            <td class="px-4 py-3">
+                                {{ $category->quota }}
+                            </td>
+
+                            <td class="px-4 py-3">
+                                @if($category->price == 0)
+                                    Gratis
+                                @else
+                                    Rp {{ number_format($category->price,0,',','.') }}
+                                @endif
+                            </td>
+
+                            <td class="px-4 py-3">
+                                {{ $category->registrations->count() }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+</div>
 </x-layouts.admin>

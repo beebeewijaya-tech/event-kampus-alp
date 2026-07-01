@@ -47,6 +47,8 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
+        $event->load('categories.registrations');
+
         return view('admin.events.edit', compact('event'));
     }
 
