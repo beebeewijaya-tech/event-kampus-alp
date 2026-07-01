@@ -16,7 +16,7 @@ class ReportController extends Controller
         $totalRegistrations = Registration::count();
         $confirmedRegistrations = Registration::where('status', 'confirmed')->count();
         $waitingListRegistrations = Registration::where('status', 'waiting_list')->count();
-        $checkedInToday = Registration::whereDate('checked_in_at', today())->count();
+        $checkedInToday = Registration::whereDate('checked_in_at', now()->toDateString())->count();
 
         $popularEvents = Event::withCount('registrations')
             ->orderByDesc('registrations_count')
