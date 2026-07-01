@@ -28,10 +28,10 @@
                         @foreach($registrations as $registration)
                             <tr class="border-b border-gray-100 hover:bg-gray-50">
                                 <td class="px-4 py-3 text-gray-800 font-medium">
-                                    {{ $registration->eventCategory->event->title }}
+                                    {{ $registration->eventCategory?->event?->title ?? 'Event tidak tersedia' }}
                                 </td>
                                 <td class="px-4 py-3 text-gray-600">
-                                    {{ $registration->eventCategory->name }}
+                                    {{ $registration->eventCategory?->name ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3">
                                     @if($registration->status === 'confirmed')
@@ -43,7 +43,13 @@
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
-                                    <code class="font-mono text-gray-800 bg-gray-100 px-2 py-0.5 rounded text-xs">{{ $registration->check_in_code }}</code>
+                                    @if($registration->check_in_code)
+    <code class="font-mono text-gray-800 bg-gray-100 px-2 py-0.5 rounded text-xs">
+        {{ $registration->check_in_code }}
+    </code>
+@else
+    <span class="text-gray-400 text-xs">Belum tersedia</span>
+@endif
                                 </td>
                                 <td class="px-4 py-3 text-gray-600">
                                     {{ $registration->created_at->format('d M Y') }}

@@ -3,7 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 // Public
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/', function () {
+    $latestEvents = \App\Models\Event::open()
+        ->with(['categories.registrations'])
+        ->latest()
+        ->take(3)
+        ->get();
+
+    return view('welcome', compact('latestEvents'));
+})->name('home');
 Route::get('/events', [\App\Http\Controllers\EventController::class, 'index'])->name('events.index');
 Route::get('/events/{event}', [\App\Http\Controllers\EventController::class, 'show'])->name('events.show');
 
