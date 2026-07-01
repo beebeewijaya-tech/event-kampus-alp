@@ -59,9 +59,10 @@
                         <tbody>
                             @foreach($event->categories as $category)
                                 @php
-                                    $isFull = $category->confirmed_count >= $category->quota;
-                                    $availableSlots = $category->quota - $category->confirmed_count;
-                                @endphp
+    $confirmedCount = $category->confirmed_count ?? 0;
+    $isFull = $confirmedCount >= $category->quota;
+    $availableSlots = max(0, $category->quota - $confirmedCount);
+@endphp
                                 <tr class="border-b border-gray-100 hover:bg-gray-50">
                                     <td class="px-4 py-3 text-gray-800 font-medium">{{ $category->name }}</td>
                                     <td class="px-4 py-3 text-gray-600">{{ $category->quota }}</td>
