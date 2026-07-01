@@ -56,7 +56,7 @@
 
                 <div class="bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between gap-4">
                     <div class="flex items-center gap-4">
-                        @if($event->poster_img && $event->poster_img !== 'posters/default.jpg')
+                        @if($event->poster_img && $event->poster_img !== 'posters/default.jpg' && Storage::disk('public')->exists($event->poster_img))
                             <img src="{{ Storage::url($event->poster_img) }}"
                                  class="w-24 h-24 object-cover rounded">
                         @else
