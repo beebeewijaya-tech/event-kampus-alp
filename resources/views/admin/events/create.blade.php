@@ -71,6 +71,59 @@
                 </select>
             </div>
 
+            <div class="border-t pt-5">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800">Kategori Tiket</h2>
+                        <p class="text-sm text-gray-500">Tambahkan pilihan tiket untuk event ini.</p>
+                    </div>
+
+                    <button type="button" id="add-category"
+                            class="px-3 py-2 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700">
+                        + Tambah Kategori
+                    </button>
+                </div>
+
+                <div id="categories-wrapper" class="space-y-4">
+                    <div class="category-item border rounded-lg p-4 bg-gray-50">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kategori</label>
+                                <input type="text" name="categories[0][name]"
+                                       class="w-full rounded-lg border-gray-300 shadow-sm"
+                                       placeholder="Regular / VIP / Mahasiswa">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Kuota</label>
+                                <input type="number" name="categories[0][quota]" min="1"
+                                       class="w-full rounded-lg border-gray-300 shadow-sm"
+                                       placeholder="50">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Harga</label>
+                                <input type="number" name="categories[0][price]" min="0"
+                                       class="w-full rounded-lg border-gray-300 shadow-sm"
+                                       placeholder="50000">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Kategori</label>
+                            <textarea name="categories[0][description]" rows="2"
+                                      class="w-full rounded-lg border-gray-300 shadow-sm"
+                                      placeholder="Opsional"></textarea>
+                        </div>
+
+                        <button type="button"
+                                class="remove-category mt-3 text-sm text-red-600 hover:text-red-800">
+                            Hapus Kategori
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex justify-end gap-3 pt-4">
                 <a href="{{ route('admin.events.index') }}"
                    class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">
@@ -83,4 +136,67 @@
             </div>
         </form>
     </div>
+
+    <script>
+        let categoryIndex = 1;
+
+        document.getElementById('add-category').addEventListener('click', function () {
+            const wrapper = document.getElementById('categories-wrapper');
+
+            const html = `
+                <div class="category-item border rounded-lg p-4 bg-gray-50">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kategori</label>
+                            <input type="text" name="categories[${categoryIndex}][name]"
+                                   class="w-full rounded-lg border-gray-300 shadow-sm"
+                                   placeholder="Regular / VIP / Mahasiswa">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Kuota</label>
+                            <input type="number" name="categories[${categoryIndex}][quota]" min="1"
+                                   class="w-full rounded-lg border-gray-300 shadow-sm"
+                                   placeholder="50">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Harga</label>
+                            <input type="number" name="categories[${categoryIndex}][price]" min="0"
+                                   class="w-full rounded-lg border-gray-300 shadow-sm"
+                                   placeholder="50000">
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Kategori</label>
+                        <textarea name="categories[${categoryIndex}][description]" rows="2"
+                                  class="w-full rounded-lg border-gray-300 shadow-sm"
+                                  placeholder="Opsional"></textarea>
+                    </div>
+
+                    <button type="button"
+                            class="remove-category mt-3 text-sm text-red-600 hover:text-red-800">
+                        Hapus Kategori
+                    </button>
+                </div>
+            `;
+
+            wrapper.insertAdjacentHTML('beforeend', html);
+            categoryIndex++;
+        });
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('remove-category')) {
+        const items = document.querySelectorAll('.category-item');
+
+        if (items.length <= 1) {
+            alert('Minimal harus ada satu kategori tiket.');
+            return;
+        }
+
+        e.target.closest('.category-item').remove();
+    }
+});
+    </script>
 </x-layouts.admin>
